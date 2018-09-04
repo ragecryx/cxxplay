@@ -2,7 +2,7 @@
 Script to make prototyping with C/C++ easier. This is done by including the commands to compile and run the program in the top-most comments on the main file.
 
 ## Installation
-Run `cxxplay.sh` at the end of your bashrc/zshrc
+Source `cxxplay.sh` at the end of your bashrc/zshrc
 
 ## How to use
 Add something like `// build!#BUILD_COMMAND#` for the build step\
