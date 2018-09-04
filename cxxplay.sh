@@ -1,6 +1,6 @@
 #!/bin/bash
 
-function cxxplay_func() {
+function __cxxplay_func() {
     clear
 
     fgMauve="\e[35m"
@@ -31,4 +31,31 @@ function cxxplay_func() {
     fi
 }
 
-alias cxxplay=cxxplay_func
+function __cxxnew_func() {
+    clear
+
+    fgMauve="\e[35m"
+    bgMauve="\e[45m"
+    fgGray="\e[30m"
+    bgRed="\e[41m"
+    colorReset="\e[0m"
+    Cl2EOL="\x1B[K"
+
+    if [ $# -eq 0 ]; then
+        echo -e "$bgMauve$fgGray CxxNew - Usage: cxxnew my_super_demo$Cl2EOL$colorReset\n\n$fgMauve Details:$colorReset\n Creates a new cpp file my_super_demo.cpp with a default main function."
+        return
+    fi
+
+    filename="$1.cpp"
+    touch $filename
+    echo "// build!g++ -g -Wall -o $1.bin $1.cpp" >> $filename
+    echo "// run!./$1.bin\n" >> $filename
+    echo "#include <iostream>\n\n" >> $filename
+    echo "int main (int argc, char const *argv[]) {" >> $filename
+    echo "    std::cout << \"Hello from $1\" << std::endl;" >> $filename
+    echo "    return 0;" >> $filename
+    echo "}" >> $filename
+}
+
+alias cxxplay=__cxxplay_func
+alias cxxnew=__cxxnew_func
